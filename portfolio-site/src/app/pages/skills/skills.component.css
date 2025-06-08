@@ -1,0 +1,36 @@
+.skills-section {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.skills-section h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  background: #e0e0e0;
+  border-radius: 20px;
+  height: 10px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.progress {
+  background: #4caf50;
+  height: 100%;
+}
