@@ -1,10 +1,10 @@
 <section class="projects-section">
   <h1>My Projects</h1>
-  <div class="project-list">
+  <div *ngIf="projects$ | async as projects">
     <div *ngFor="let project of projects" class="project-card">
       <h2>{{ project.title }}</h2>
       <p>{{ project.description }}</p>
-      <p><strong>Technologies:</strong> {{ project.technologies.join(', ') }}</p>
+      <p><strong>Tech:</strong> {{ project.technologies.join(', ') }}</p>
       <a *ngIf="project.link" [href]="project.link" target="_blank">View on GitHub</a>
     </div>
   </div>

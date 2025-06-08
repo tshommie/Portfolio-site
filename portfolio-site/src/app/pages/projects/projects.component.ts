@@ -1,24 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
+  imports: [],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent {
-  projects = [
-    {
-      title: 'Portfolio Website',
-      description: 'A personal portfolio built using Angular.',
-      technologies: ['Angular', 'TypeScript', 'CSS'],
-      link: 'https://github.com/yourusername/portfolio-site'
-    },
-    {
-      title: 'Data Dashboard',
-      description: 'Interactive dashboard showing analytics for a business.',
-      technologies: ['Firebase', 'Charts.js', 'HTML/CSS'],
-      link: ''
-    }
-  ];
+export class ProjectsComponent implements OnInit {
+  firestore: Firestore = inject(Firestore);
+  projects$!: Observable<any[]>;
+
+  ngOnInit() {
+    const projectRef = collection(this.firestore, 'projects');
+    this.projects$ = collectionData(projectRef);
+  }
 }

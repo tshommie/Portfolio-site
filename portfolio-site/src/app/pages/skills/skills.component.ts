@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
+  imports: [],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.css']
 })
-export class SkillsComponent {
-  skills = [
-    { name: 'Angular', level: 80 },
-    { name: 'TypeScript', level: 75 },
-    { name: 'HTML/CSS', level: 85 },
-    { name: 'Firebase', level: 65 },
-    { name: 'Data Analysis', level: 70 }
-  ];
+export class SkillsComponent implements OnInit {
+  firestore: Firestore = inject(Firestore);
+  skills$!: Observable<any[]>;
+
+  ngOnInit() {
+    const skillsRef = collection(this.firestore, 'skills');
+    this.skills$ = collectionData(skillsRef);
+  }
 }
